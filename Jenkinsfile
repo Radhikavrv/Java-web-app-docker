@@ -24,7 +24,7 @@ node{
         sh "docker push radhikavrv/java-web-app-docker:${buildNumber}"
     }
 
-    stage("Deploy Application As Docker Container In Docker Deployment Server"){
+    stage("Shutting Down Docker Compose"){
         
         sshagent(['Docker_Dev_Server_SSH1']) {
           sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.4.238 docker-compose down"
@@ -42,7 +42,7 @@ node{
     }
    }
 
-   stage("Deploy Application As Docker Container In Docker Deployment Server"){
+   stage("Launching Containers using Docker compose method"){
         
         sshagent(['Docker_Dev_Server_SSH1']) {
           sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.4.238 docker-compose up -d"
