@@ -24,7 +24,13 @@ node{
         sh "docker push radhikavrv/java-web-app-docker:${buildNumber}"
     }
 
-    
+    stage("Shutting Down Docker Compose"){
+        
+        sshagent(['Docker_Dev_Server_SSH1']) {
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.4.238 docker-compose down"
+        }
+          
+      }
     
     
      withCredentials([sshUserPrivateKey(credentialsId: "Docker_Dev_Server_SSH1", keyFileVariable: 'keyfile')]) {
