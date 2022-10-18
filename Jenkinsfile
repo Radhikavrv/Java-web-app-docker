@@ -39,7 +39,7 @@ node{
    stage("Launching Containers using Docker compose method"){
         
         sshagent(['Docker_Dev_Server_SSH1']) {
-          sh "ssh -o StrictHostKeyChecking=no ubuntu@3.110.20.241 docker-compose up -d"
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.4.238 docker-compose up -d"
         }
           
       }
