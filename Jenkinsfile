@@ -51,3 +51,20 @@ node{
       }
     
 }
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Ok') {
+            steps {
+                echo "Ok"
+            }
+        }
+    }  
+    post {
+        always {
+            emailtext body: 'A Test EMail', recepientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+        }
+    }
+}
